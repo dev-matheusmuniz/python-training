@@ -1,46 +1,51 @@
 import random
 
-print("*********************************")
-print("Bem vindo ao jogo de Adivinhação!")
-print("*********************************")
+def iniciar_adivinhacao():
 
-numero_secreto = round(random.randrange(1, 101))
-total_de_tentativas = 0
-pontos = 1000
+    print("*********************************")
+    print("Bem vindo ao jogo de Adivinhação!")
+    print("*********************************")
 
-print("Níveis de dificuldade:")
-print("(1) Fácil | (2) Médio | (3) Difícil")
+    numero_secreto = round(random.randrange(1, 101))
+    total_de_tentativas = 0
+    pontos = 1000
 
-nivel = int(input("Insira a dificuldade desejada: "))
+    print("Níveis de dificuldade:")
+    print("(1) Fácil | (2) Médio | (3) Difícil")
 
-if(nivel == 1):
-    total_de_tentativas = 20
-elif(nivel == 2):
-    total_de_tentativas = 10
-else:
-    total_de_tentativas = 5
+    nivel = int(input("Insira a dificuldade desejada: "))
 
-for rodada in range(1, total_de_tentativas + 1):
-    print("Tentativa {} de {}".format(rodada, total_de_tentativas))
-    chute = int(input("Digite um número entre 1 e 100: "))
-    if(chute < 1 or chute > 100):
-        print("Seu número está fora do range solicitado!")
-        continue
-
-    acertou = chute == numero_secreto
-    maior = chute > numero_secreto
-    menor = chute < numero_secreto
-
-    if (acertou):
-        print("Você acertou! Sua pontuação final foi: {}".format(pontos))
-        break
+    if(nivel == 1):
+        total_de_tentativas = 20
+    elif(nivel == 2):
+        total_de_tentativas = 10
     else:
-        if(maior):
-            print("Seu chute foi maior do que o número secreto!")
-        elif(menor):
-            print("Seu chute foi menor que o número secreto!")
-        
-        pontos_perdidos = abs(numero_secreto - chute)
-        pontos = pontos - pontos_perdidos
+        total_de_tentativas = 5
 
-print("Fim do jogo")
+    for rodada in range(1, total_de_tentativas + 1):
+        print("Tentativa {} de {}".format(rodada, total_de_tentativas))
+        chute = int(input("Digite um número entre 1 e 100: "))
+        if(chute < 1 or chute > 100):
+            print("Seu número está fora do range solicitado!")
+            continue
+
+        acertou = chute == numero_secreto
+        maior = chute > numero_secreto
+        menor = chute < numero_secreto
+
+        if (acertou):
+            print("Você acertou! Sua pontuação final foi: {}".format(pontos))
+            break
+        else:
+            if(maior):
+                print("Seu chute foi maior do que o número secreto!")
+            elif(menor):
+                print("Seu chute foi menor que o número secreto!")
+            
+            pontos_perdidos = abs(numero_secreto - chute)
+            pontos = pontos - pontos_perdidos
+
+    print("Fim do jogo")
+
+if(__name__ == "__main__"):
+    iniciar_adivinhacao()
